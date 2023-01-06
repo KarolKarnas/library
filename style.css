@@ -58,3 +58,8 @@ header {
 .form-row input:focus {
 	outline: 1px solid black;
 }
+
+
+button[type="submit"] {
+	padding: 20px;
+}

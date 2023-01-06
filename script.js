@@ -30,17 +30,46 @@ function Book(title, author, pages, read) {
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
-	this.info = () => `${title} by ${author}, ${pages}, ${read}`;
+	// this.info = () => `${title} by ${author}, ${pages}, ${read}`;
 }
 
-function addBookToLibrary() {
-	// do stuff here
+function addBookToLibrary(event) {
+	let userTitle = document.querySelector('#title');
+	let userAuthor = document.querySelector('#author');
+	let userPages = document.querySelector('#pages');
+	let userRead = document.querySelector('#read');
+
+	console.log(
+		userTitle.value,
+		userAuthor.value,
+		userPages.value,
+		userRead.value
+	);
+
+	let newBook = new Book(
+		userTitle.value,
+		userAuthor.value,
+		userPages.value,
+		userRead.value
+	);
+
+	myLibrary.push(newBook);
+	console.log(newBook);
+	console.log(myLibrary);
+
+	event.preventDefault();
 }
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not read yet');
+let submitBtn = document.querySelector('#submit');
 
-console.log(theHobbit.info());
+submitBtn.addEventListener('click', addBookToLibrary, false);
 
-console.log(theHobbit.constructor);
+// addBookToLibrary();
 
-console.log(theHobbit);
+// const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not read yet');
+
+// console.log(theHobbit.info());
+
+// console.log(theHobbit.constructor);
+
+// console.log(theHobbit);
