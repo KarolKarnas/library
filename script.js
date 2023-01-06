@@ -12,18 +12,47 @@ let myLibrary = [
 		read: 'not read yet',
 	},
 	{
-		title: 'C.S. Lewis',
-		author: 'The Chronicles od Narnia',
+		title: 'The Chronicles od Narnia',
+		author: 'C.S. Lewis',
 		pages: 900,
 		read: 'not read yet',
 	},
-	{
-		title: '',
-		author: '',
-		pages: 0,
-		read: '',
-	},
 ];
+
+function makeLibrary() {
+	let tableUl = document.querySelector('.table');
+	for (let i = 0; i < myLibrary.length; i++) {
+		let childLi = document.createElement('li');
+		childLi.className = 'table-row';
+		tableUl.appendChild(childLi);
+
+		let titleDiv = document.createElement('div');
+		titleDiv.textContent = myLibrary[i].title;
+		titleDiv.className = 'col-1';
+		childLi.appendChild(titleDiv);
+
+		let authorDiv = document.createElement('div');
+		authorDiv.textContent = myLibrary[i].author;
+		authorDiv.className = 'col-2';
+		childLi.appendChild(authorDiv);
+
+		let pagesDiv = document.createElement('div');
+		pagesDiv.textContent = myLibrary[i].pages;
+		pagesDiv.className = 'col-3';
+		childLi.appendChild(pagesDiv);
+
+		let readDiv = document.createElement('div');
+		readDiv.textContent = myLibrary[i].read;
+		readDiv.className = 'col-3';
+		childLi.appendChild(readDiv);
+
+		// console.log(myLibrary[i]);
+		// console.log(myLibrary[i].title);
+		// console.log(tableUl);
+	}
+}
+
+makeLibrary();
 
 function Book(title, author, pages, read) {
 	this.title = title;
