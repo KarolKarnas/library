@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 body {
@@ -12,12 +12,12 @@ body {
 	flex-direction: column;
 	padding: 0;
 	margin: 0;
-    justify-content: center;
+	justify-content: center;
 }
 
 header {
 	/* margin-top: 50px; */
-    padding: 20px 0;
+	padding: 20px 0;
 	justify-content: center;
 	display: flex;
 }
@@ -38,4 +38,23 @@ header {
 	flex-direction: column;
 	padding: 10px;
 	border-radius: 15px;
+}
+
+.form-row {
+	display: flex;
+	align-items: center;
+}
+
+.form-row label {
+	width: 10%;
+}
+
+.form-row input {
+	width: 80%;
+	padding: 5px;
+	margin: 10px;
+}
+
+.form-row input:focus {
+	outline: 1px solid black;
 }
