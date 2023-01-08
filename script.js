@@ -19,9 +19,9 @@ let myLibrary = [
 	},
 ];
 
-function makeLibrary() {
+function makeLibrary(numElem) {
 	let tableUl = document.querySelector('.table');
-	for (let i = 0; i < myLibrary.length; i++) {
+	for (let i = numElem; i < myLibrary.length; i++) {
 		let childLi = document.createElement('li');
 		childLi.className = 'table-row';
 		tableUl.appendChild(childLi);
@@ -52,7 +52,8 @@ function makeLibrary() {
 	}
 }
 
-makeLibrary();
+makeLibrary(0);
+// console.log(document.querySelectorAll('.table-row'));
 
 function Book(title, author, pages, read) {
 	this.title = title;
@@ -68,12 +69,12 @@ function addBookToLibrary(event) {
 	let userPages = document.querySelector('#pages');
 	let userRead = document.querySelector('#read');
 
-	console.log(
-		userTitle.value,
-		userAuthor.value,
-		userPages.value,
-		userRead.value
-	);
+	// console.log(
+	// 	userTitle.value,
+	// 	userAuthor.value,
+	// 	userPages.value,
+	// 	userRead.value
+	// );
 
 	let newBook = new Book(
 		userTitle.value,
@@ -83,8 +84,11 @@ function addBookToLibrary(event) {
 	);
 
 	myLibrary.push(newBook);
-	console.log(newBook);
-	console.log(myLibrary);
+	makeLibrary(myLibrary.length - 1);
+	toggleForm()
+
+	// console.log(newBook);
+	// console.log(myLibrary);
 
 	event.preventDefault();
 }
@@ -92,6 +96,26 @@ function addBookToLibrary(event) {
 let submitBtn = document.querySelector('#submit');
 
 submitBtn.addEventListener('click', addBookToLibrary, false);
+
+
+// toggle btn
+
+let addBookForm = document.querySelector('#form-library');
+
+function toggleForm() {
+	if (addBookForm.style.display === 'none') {
+		addBookForm.style.display = 'initial';
+	} else {
+		addBookForm.style.display = 'none';
+	}
+
+	// console.log(addBookForm.style)
+}
+
+let toggleBtn = document.querySelector('#form-toggle');
+
+toggleBtn.addEventListener('click', toggleForm);
+
 
 // addBookToLibrary();
 
