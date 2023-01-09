@@ -19,10 +19,13 @@ let myLibrary = [
 	},
 ];
 
+// create HTML library
+
 function makeLibrary(numElem) {
 	let tableUl = document.querySelector('.table');
 	for (let i = numElem; i < myLibrary.length; i++) {
 		let childLi = document.createElement('li');
+		childLi.setAttribute('data-id', `${i}`);
 		childLi.className = 'table-row';
 		tableUl.appendChild(childLi);
 
@@ -43,14 +46,27 @@ function makeLibrary(numElem) {
 
 		let readDiv = document.createElement('div');
 		readDiv.textContent = myLibrary[i].read;
-		readDiv.className = 'col-3';
+		readDiv.className = 'col-4';
 		childLi.appendChild(readDiv);
 
-		// console.log(myLibrary[i]);
-		// console.log(myLibrary[i].title);
-		// console.log(tableUl);
+		// create button container
+		let deleteDiv = document.createElement('div');
+		deleteDiv.className = 'col-5';
+		childLi.appendChild(deleteDiv);
+
+		//create delete Button
+		let delBtn = document.createElement('button');
+		delBtn.textContent = 'DELETE';
+		delBtn.addEventListener('click', function () {
+			let liToDelete = document.querySelector(`[data-id="${i}"]`);
+			liToDelete.remove();
+		});
+		deleteDiv.appendChild(delBtn);
+
 	}
 }
+
+// make initially HTML library
 
 makeLibrary(0);
 // console.log(document.querySelectorAll('.table-row'));
@@ -63,18 +79,13 @@ function Book(title, author, pages, read) {
 	// this.info = () => `${title} by ${author}, ${pages}, ${read}`;
 }
 
+// add yo myLibrary with data from the form
+
 function addBookToLibrary(event) {
 	let userTitle = document.querySelector('#title');
 	let userAuthor = document.querySelector('#author');
 	let userPages = document.querySelector('#pages');
 	let userRead = document.querySelector('#read');
-
-	// console.log(
-	// 	userTitle.value,
-	// 	userAuthor.value,
-	// 	userPages.value,
-	// 	userRead.value
-	// );
 
 	let newBook = new Book(
 		userTitle.value,
@@ -85,18 +96,17 @@ function addBookToLibrary(event) {
 
 	myLibrary.push(newBook);
 	makeLibrary(myLibrary.length - 1);
-	toggleForm()
+	toggleForm();
 
-	// console.log(newBook);
-	// console.log(myLibrary);
 
 	event.preventDefault();
 }
 
+// submit button
+
 let submitBtn = document.querySelector('#submit');
 
 submitBtn.addEventListener('click', addBookToLibrary, false);
-
 
 // toggle btn
 
@@ -109,20 +119,9 @@ function toggleForm() {
 		addBookForm.style.display = 'none';
 	}
 
-	// console.log(addBookForm.style)
 }
 
 let toggleBtn = document.querySelector('#form-toggle');
 
 toggleBtn.addEventListener('click', toggleForm);
 
-
-// addBookToLibrary();
-
-// const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not read yet');
-
-// console.log(theHobbit.info());
-
-// console.log(theHobbit.constructor);
-
-// console.log(theHobbit);

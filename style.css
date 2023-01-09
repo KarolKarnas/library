@@ -40,7 +40,11 @@ header {
 	flex-direction: column;
 	padding: 10px;
 	border-radius: 15px;
+}
 
+form {
+	border: 1px black solid;
+	padding: 20px;
 }
 
 /* #form-library {
@@ -79,7 +83,8 @@ header {
 	outline: 1px solid black;
 }
 
-button[type='submit'], #form-toggle {
+button[type='submit'],
+#form-toggle {
 	padding: 5px 20px;
 	/* margin: 0 auto; */
 	margin: 10px 0;
@@ -130,8 +135,11 @@ h2 {
 	flex-basis: 30%;
 }
 .table .col-3 {
-	flex-basis: 20%;
+	flex-basis: 15%;
 }
 .table .col-4 {
-	flex-basis: 20%;
+	flex-basis: 15%;
+}
+.table .col-5 {
+	flex-basis: 10%;
 }
