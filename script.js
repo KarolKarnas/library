@@ -3,19 +3,19 @@ let myLibrary = [
 		title: 'Dune',
 		author: 'Frank Herbert',
 		pages: 350,
-		read: 'read',
+		read: true,
 	},
 	{
 		title: 'A Game of Thrones',
 		author: 'George R. R. Martin',
 		pages: 700,
-		read: 'not read yet',
+		read: false,
 	},
 	{
 		title: 'The Chronicles od Narnia',
 		author: 'C.S. Lewis',
 		pages: 900,
-		read: 'not read yet',
+		read: false,
 	},
 ];
 
@@ -44,12 +44,34 @@ function makeLibrary(numElem) {
 		pagesDiv.className = 'col-3';
 		childLi.appendChild(pagesDiv);
 
+		//display read status
 		let readDiv = document.createElement('div');
-		readDiv.textContent = myLibrary[i].read;
+		// readDiv.textContent = myLibrary[i].read;
 		readDiv.className = 'col-4';
 		childLi.appendChild(readDiv);
 
-		// create button container
+		// read status button
+		let readBtn = document.createElement('button');
+		// create Html status button
+		if (myLibrary[i].read) {
+			readBtn.textContent = 'YES';
+		} else {
+			readBtn.textContent = 'NO';
+		}
+		// in future add this function on your Book prototype instance??
+		// add toggle functionality
+		readBtn.addEventListener('click', function() {
+			if (myLibrary[i].read) {
+				readBtn.textContent = 'NO';
+				myLibrary[i].read = false;
+			} else {
+				readBtn.textContent = 'YES';
+				myLibrary[i].read = true;
+			}
+		});
+		readDiv.appendChild(readBtn);
+	
+		// create delete button container
 		let deleteDiv = document.createElement('div');
 		deleteDiv.className = 'col-5';
 		childLi.appendChild(deleteDiv);
@@ -91,7 +113,7 @@ function addBookToLibrary(event) {
 		userTitle.value,
 		userAuthor.value,
 		userPages.value,
-		userRead.value
+		userRead.checked
 	);
 
 	myLibrary.push(newBook);
