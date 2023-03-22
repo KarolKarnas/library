@@ -1,4 +1,4 @@
-let myLibrary = [
+ myLibrary = [
 	{
 		title: 'Dune',
 		author: 'Frank Herbert',
@@ -22,36 +22,36 @@ let myLibrary = [
 // create HTML library
 
 function makeLibrary(numElem) {
-	let tableUl = document.querySelector('.table');
+	const tableUl = document.querySelector('.table');
 	for (let i = numElem; i < myLibrary.length; i++) {
-		let childLi = document.createElement('li');
+		const childLi = document.createElement('li');
 		childLi.setAttribute('data-id', `${i}`);
 		childLi.className = 'table-row';
 		tableUl.appendChild(childLi);
 
-		let titleDiv = document.createElement('div');
+		const titleDiv = document.createElement('div');
 		titleDiv.textContent = myLibrary[i].title;
 		titleDiv.className = 'col-1';
 		childLi.appendChild(titleDiv);
 
-		let authorDiv = document.createElement('div');
+		const authorDiv = document.createElement('div');
 		authorDiv.textContent = myLibrary[i].author;
 		authorDiv.className = 'col-2';
 		childLi.appendChild(authorDiv);
 
-		let pagesDiv = document.createElement('div');
+		const pagesDiv = document.createElement('div');
 		pagesDiv.textContent = myLibrary[i].pages;
 		pagesDiv.className = 'col-3';
 		childLi.appendChild(pagesDiv);
 
 		//display read status
-		let readDiv = document.createElement('div');
+		const readDiv = document.createElement('div');
 		// readDiv.textContent = myLibrary[i].read;
 		readDiv.className = 'col-4';
 		childLi.appendChild(readDiv);
 
 		// read status button
-		let readBtn = document.createElement('button');
+		const readBtn = document.createElement('button');
 		// create Html status button
 		if (myLibrary[i].read) {
 			readBtn.textContent = 'YES';
@@ -72,15 +72,15 @@ function makeLibrary(numElem) {
 		readDiv.appendChild(readBtn);
 	
 		// create delete button container
-		let deleteDiv = document.createElement('div');
+		const deleteDiv = document.createElement('div');
 		deleteDiv.className = 'col-5';
 		childLi.appendChild(deleteDiv);
 
 		//create delete Button
-		let delBtn = document.createElement('button');
+		const delBtn = document.createElement('button');
 		delBtn.textContent = 'DELETE';
 		delBtn.addEventListener('click', function () {
-			let liToDelete = document.querySelector(`[data-id="${i}"]`);
+			const liToDelete = document.querySelector(`[data-id="${i}"]`);
 			liToDelete.remove();
 		});
 		deleteDiv.appendChild(delBtn);
@@ -104,12 +104,12 @@ function Book(title, author, pages, read) {
 // add yo myLibrary with data from the form
 
 function addBookToLibrary(event) {
-	let userTitle = document.querySelector('#title');
-	let userAuthor = document.querySelector('#author');
-	let userPages = document.querySelector('#pages');
-	let userRead = document.querySelector('#read');
+	const userTitle = document.querySelector('#title');
+	const userAuthor = document.querySelector('#author');
+	const userPages = document.querySelector('#pages');
+	const userRead = document.querySelector('#read');
 
-	let newBook = new Book(
+	const newBook = new Book(
 		userTitle.value,
 		userAuthor.value,
 		userPages.value,
@@ -126,13 +126,13 @@ function addBookToLibrary(event) {
 
 // submit button
 
-let submitBtn = document.querySelector('#submit');
+const submitBtn = document.querySelector('#submit');
 
 submitBtn.addEventListener('click', addBookToLibrary, false);
 
 // toggle btn
 
-let addBookForm = document.querySelector('#form-library');
+const addBookForm = document.querySelector('#form-library');
 
 function toggleForm() {
 	if (addBookForm.style.display === 'none') {
@@ -143,7 +143,7 @@ function toggleForm() {
 
 }
 
-let toggleBtn = document.querySelector('#form-toggle');
+const toggleBtn = document.querySelector('#form-toggle');
 
 toggleBtn.addEventListener('click', toggleForm);
 
