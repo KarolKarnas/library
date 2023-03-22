@@ -143,3 +143,8 @@ h2 {
 .table .col-5 {
 	flex-basis: 10%;
 }
+
+#submit:hover, #form-toggle:hover {
+	cursor: pointer;
+	background-color: indianred;
+}

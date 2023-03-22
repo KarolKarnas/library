@@ -1,4 +1,4 @@
- myLibrary = [
+myLibrary = [
 	{
 		title: 'Dune',
 		author: 'Frank Herbert',
@@ -60,7 +60,7 @@ function makeLibrary(numElem) {
 		}
 		// in future add this function on your Book prototype instance??
 		// add toggle functionality
-		readBtn.addEventListener('click', function() {
+		readBtn.addEventListener('click', function () {
 			if (myLibrary[i].read) {
 				readBtn.textContent = 'NO';
 				myLibrary[i].read = false;
@@ -70,7 +70,7 @@ function makeLibrary(numElem) {
 			}
 		});
 		readDiv.appendChild(readBtn);
-	
+
 		// create delete button container
 		const deleteDiv = document.createElement('div');
 		deleteDiv.className = 'col-5';
@@ -84,7 +84,6 @@ function makeLibrary(numElem) {
 			liToDelete.remove();
 		});
 		deleteDiv.appendChild(delBtn);
-
 	}
 }
 
@@ -101,34 +100,51 @@ function Book(title, author, pages, read) {
 	// this.info = () => `${title} by ${author}, ${pages}, ${read}`;
 }
 
+//form inputs
+
+const userTitle = document.querySelector('#title');
+const userAuthor = document.querySelector('#author');
+const userPages = document.querySelector('#pages');
+const userRead = document.querySelector('#read');
+
+// clear input fields
+
+function clearInputs() {
+	userTitle.value = ''
+	userAuthor.value = ''
+	userPages.value = ''
+	userRead.checked = false
+}
+
+// form validation
+function formValidation() {
+	console.log('hello');
+}
+
 // add yo myLibrary with data from the form
 
-function addBookToLibrary(event) {
-	const userTitle = document.querySelector('#title');
-	const userAuthor = document.querySelector('#author');
-	const userPages = document.querySelector('#pages');
-	const userRead = document.querySelector('#read');
-
+function addBookToLibrary() {
 	const newBook = new Book(
 		userTitle.value,
 		userAuthor.value,
 		userPages.value,
 		userRead.checked
 	);
-
+	clearInputs()
 	myLibrary.push(newBook);
 	makeLibrary(myLibrary.length - 1);
 	toggleForm();
-
-
-	event.preventDefault();
 }
 
 // submit button
 
 const submitBtn = document.querySelector('#submit');
 
-submitBtn.addEventListener('click', addBookToLibrary, false);
+submitBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	formValidation();
+	addBookToLibrary();
+});
 
 // toggle btn
 
@@ -140,10 +156,8 @@ function toggleForm() {
 	} else {
 		addBookForm.style.display = 'none';
 	}
-
 }
 
 const toggleBtn = document.querySelector('#form-toggle');
 
 toggleBtn.addEventListener('click', toggleForm);
-
