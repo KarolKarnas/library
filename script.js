@@ -110,15 +110,24 @@ const userRead = document.querySelector('#read');
 // clear input fields
 
 function clearInputs() {
-	userTitle.value = ''
-	userAuthor.value = ''
-	userPages.value = ''
-	userRead.checked = false
+	userTitle.value = '';
+	userAuthor.value = '';
+	userPages.value = '';
+	userRead.checked = false;
 }
-
 // form validation
+let validationFlag;
 function formValidation() {
-	console.log('hello');
+	if (
+		userTitle.value === '' ||
+		userAuthor.value === '' ||
+		userPages.value === ''
+	) {
+		alert('Please, fill all inputs');
+		return false;
+	} else {
+		return true;
+	}
 }
 
 // add yo myLibrary with data from the form
@@ -130,7 +139,7 @@ function addBookToLibrary() {
 		userPages.value,
 		userRead.checked
 	);
-	clearInputs()
+	clearInputs();
 	myLibrary.push(newBook);
 	makeLibrary(myLibrary.length - 1);
 	toggleForm();
@@ -142,7 +151,8 @@ const submitBtn = document.querySelector('#submit');
 
 submitBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	formValidation();
+	validationFlag = formValidation();
+	if (!validationFlag) return;
 	addBookToLibrary();
 });
 
